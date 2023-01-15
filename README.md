@@ -2,7 +2,7 @@
 # MaZsh
 
 ## About
-- MaZsh is a fully functional basic shell written by Manas Yendluri(2019113008), in C for linux operating systems
+- MaZsh is a fully functional basic shell written by Manas Yendluri(2019113008), in C for linux operating systems.
 - Implemented features such as redirection, piping and shell signal handling from scratch.
 
 ## Launch MazSH
@@ -39,10 +39,10 @@ This shell assumes the directory from which it was launched as its home director
 * the initialization of the main driver while loop of the shell happens in the main.c file which is reponsible for all the user inputs and display prompt of the shell.
 * after the input is taken from the user using getline the shell then tokenizes the input and splits the input command using ; as a delimiter and each command is processed sequentially.
 * each command seperated by ; is then executed via the wrapper function handlePipes() which handles the pipes in the input command and each command seperated by pipes is then called by redirector() function which is responsible for redirection in the input command after redirection streams are set finally, the runCommand function is called which executes the final command which is devoid of pipes or redirection. This approach is usefull as pipes have higher priority than redirection so that piping is done first before redirection.
-* the first arg of each command is compared in a if else loop and if it matches then the respective function for the input command is called via function call which are stored in various external c files which was linked using shell.h
-* shell.h contains all the function prototypes from various command files and global variable declarations 
-* make exectutes the makefile which generates a binary "mazsh"(silly shell name) 
-* the rest of the files with c extension contain functions which correspond to their filename
+* the first arg of each command is compared in a if else loop and if it matches then the respective function for the input command is called via function call which are stored in various external c files which was linked using shell.h.
+* shell.h contains all the function prototypes from various command files and global variable declarations.
+* make exectutes the makefile which generates a binary "mazsh"(silly shell name).
+* the rest of the files with c extension contain functions which correspond to their filename.
 
 ## specifications from assignment 2 completed
 
@@ -90,7 +90,7 @@ This shell assumes the directory from which it was launched as its home director
 * pipes is handled by initializing a pipe array for virtual file descriptors which will store the output of the prev command in the pipe and this way we can pipe many commands 
 
 ### specification 3 : pipes and redirection combined
-* since i am using a wrapper function handlePipes() over redirection() over runCommand() the priority is as follows: pipes,redirection,input command. This way pipes is handled before redirection stream changing happens and this way we can combine redirection and pipes using a wrapper function.
+* since i am using a wrapper function handlePipes() over redirection() over runCommand() the priority is as follows: pipes,redirection,input command. This way pipes is handled before redirection stream changing happens and this way we can combine redirection and pipes using a wrapper function
 
 ### specification 4 : user defined command:
 * jobs: prints the current running and stopped background processes based on the input flag given
@@ -104,4 +104,4 @@ This shell assumes the directory from which it was launched as its home director
 * CTRL + D : stops reading input and sends sigkill to all the background processes in that session
 
 ### bonus : replay:
- * executes given command after every interval for the given time period.
+ * executes given command after every interval for the given time period
