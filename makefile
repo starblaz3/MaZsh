@@ -1,0 +1,2 @@
+mazsh: main.c cd.c ls.c echo.c pwd.c executables.c pinfo.c repeat.c history.c jobs.c sig.c bg.c fg.c redirect.c runCommand.c pipe.c replay.c
+	gcc -o mazsh main.c cd.c ls.c echo.c pwd.c executables.c pinfo.c repeat.c history.c jobs.c sig.c bg.c fg.c redirect.c runCommand.c pipe.c replay.c -I.
