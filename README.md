@@ -1,13 +1,15 @@
 
-# OSN assignment 3
+# MaZsh
 
-MazSh is a shell written by Manas Yendluri(2019113008), in C for linux operating systems
+## About
+- MaZsh is a fully functional basic shell written by Manas Yendluri(2019113008), in C for linux operating systems
+- Implemented features such as redirection, piping and shell signal handling from scratch.
 
-## launch MazSH
+## Launch MazSH
 
-Enter the directory where "makefile" is present and execute "make && ./mazsh" command which will successfully launch the shell
+- Execute "make && ./mazsh" command which will successfully launch the shell.
 
-## file structure
+## File structure
 
 The main directory has the following files:
 
@@ -30,7 +32,7 @@ The main directory has the following files:
 - `shell.h` - contains all the header files and function prototypes from the other external c files 
 - `sig.c` - contains the functions required which perform the sig command
 
-# working of shell
+## working of shell
 
 This shell assumes the directory from which it was launched as its home directory and relative paths are formatted from this directory.
 
@@ -42,64 +44,64 @@ This shell assumes the directory from which it was launched as its home director
 * make exectutes the makefile which generates a binary "mazsh"(silly shell name) 
 * the rest of the files with c extension contain functions which correspond to their filename
 
-# specifications from assignment 2 completed
+## specifications from assignment 2 completed
 
-## specification 1
+### specification 1
 
 * assuming special characters wont be inputted 
 
-## specification 2
+### specification 2
 
 * assuming spaces and escape sequences need not be handled in echo and cd
 * assuming no more than 1 directory will be entered for cd else its considered a error
 * assuming strlen(directory) is not greater than 4000
 
-## specification 3
+### specification 3
 
 * assuming no of dirs entered in ls command will not be greater than 10 and each size of dir is not greater than 4000
 
-## specification 4
+### specification 4
 
 * assuming user defined command exists else treated as an error
 
-## specification 5 
+### specification 5 
 
 * assuming process data is stored in /proc/pid/stat
 * assuming given process exits else treated as error
 
-## specification 6
+### specification 6
 
 * background process exists when sigchld signal is returned to parent process
 
-## specification 7
+### specification 7
 
 * repeat works for all user defined commands
 
-## bonus
+### bonus
 
 * implemented history and history < num > which are implemented using a global file in /tmp/history.txt and is independant on the session running
 
-# specifications from assignment 3 completed
+## specifications from assignment 3 completed
 
-## specification 1 : redirection
+### specification 1 : redirection
 * redirection in shell is basically changing stdout and stdin based on the input command(>,<,>>) and i implement it by copying stdout and stdin before redirection and assigning it the copied value after redirection is finished. Assuming only 1 file to be present on the right side of redirection operator
 
-## specification 2 : pipes
+### specification 2 : pipes
 * pipes is handled by initializing a pipe array for virtual file descriptors which will store the output of the prev command in the pipe and this way we can pipe many commands 
 
-## specification 3 : pipes and redirection combined
+### specification 3 : pipes and redirection combined
 * since i am using a wrapper function handlePipes() over redirection() over runCommand() the priority is as follows: pipes,redirection,input command. This way pipes is handled before redirection stream changing happens and this way we can combine redirection and pipes using a wrapper function.
 
-## specification 4 : user defined command:
+### specification 4 : user defined command:
 * jobs: prints the current running and stopped background processes based on the input flag given
 * sig : sends the user inputted signal to the job number mentioned
 * fg : sends sigcont to the process with jobID and changed tty stream to foreground.
 * bg : sends sigCont signal to the process with given jobID
 
-## specification 4 : signal handling:
+### specification 4 : signal handling:
 * CTRL + Z : pushes the current foreground process to background and sends sigtstp signal to it and add it to the background processes list
 * CTRL + C : sends sigint signal to current foreground process and has no effect if no foreground process running in terminal
 * CTRL + D : stops reading input and sends sigkill to all the background processes in that session
 
-## bonus : replay:
+### bonus : replay:
  * executes given command after every interval for the given time period.
