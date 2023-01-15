@@ -32,65 +32,65 @@ The main directory has the following files:
 - `shell.h` - contains all the header files and function prototypes from the other external c files 
 - `sig.c` - contains the functions required which perform the sig command
 
-## working of shell
+## Working of shell
 
 This shell assumes the directory from which it was launched as its home directory and relative paths are formatted from this directory.
 
-* the initialization of the main driver while loop of the shell happens in the main.c file which is reponsible for all the user inputs and display prompt of the shell.
-* after the input is taken from the user using getline the shell then tokenizes the input and splits the input command using ; as a delimiter and each command is processed sequentially.
-* each command seperated by ; is then executed via the wrapper function handlePipes() which handles the pipes in the input command and each command seperated by pipes is then called by redirector() function which is responsible for redirection in the input command after redirection streams are set finally, the runCommand function is called which executes the final command which is devoid of pipes or redirection. This approach is usefull as pipes have higher priority than redirection so that piping is done first before redirection.
-* the first arg of each command is compared in a if else loop and if it matches then the respective function for the input command is called via function call which are stored in various external c files which was linked using shell.h.
-* shell.h contains all the function prototypes from various command files and global variable declarations.
-* make exectutes the makefile which generates a binary "mazsh"(silly shell name).
-* the rest of the files with c extension contain functions which correspond to their filename.
+* The initialization of the main driver while loop of the shell happens in the main.c file which is reponsible for all the user inputs and display prompt of the shell.
+* After the input is taken from the user using getline the shell then tokenizes the input and splits the input command using ; as a delimiter and each command is processed sequentially.
+* Each command seperated by ; is then executed via the wrapper function handlePipes() which handles the pipes in the input command and each command seperated by pipes is then called by redirector() function which is responsible for redirection in the input command after redirection streams are set finally, the runCommand function is called which executes the final command which is devoid of pipes or redirection. This approach is usefull as pipes have higher priority than redirection so that piping is done first before redirection.
+* The first arg of each command is compared in a if else loop and if it matches then the respective function for the input command is called via function call which are stored in various external c files which was linked using shell.h.
+* Shell.h contains all the function prototypes from various command files and global variable declarations.
+* Make exectutes the makefile which generates a binary "mazsh"(silly shell name).
+* The rest of the files with c extension contain functions which correspond to their filename.
 
 ## specifications from assignment 2 completed
 
 ### specification 1
 
-* assuming special characters wont be inputted 
+* Assuming special characters wont be inputted 
 
 ### specification 2
 
-* assuming spaces and escape sequences need not be handled in echo and cd
-* assuming no more than 1 directory will be entered for cd else its considered a error
-* assuming strlen(directory) is not greater than 4000
+* Assuming spaces and escape sequences need not be handled in echo and cd
+* Assuming no more than 1 directory will be entered for cd else its considered a error
+* Assuming strlen(directory) is not greater than 4000
 
 ### specification 3
 
-* assuming no of dirs entered in ls command will not be greater than 10 and each size of dir is not greater than 4000
+* Assuming no of dirs entered in ls command will not be greater than 10 and each size of dir is not greater than 4000
 
 ### specification 4
 
-* assuming user defined command exists else treated as an error
+* Assuming user defined command exists else treated as an error
 
 ### specification 5 
 
-* assuming process data is stored in /proc/pid/stat
-* assuming given process exits else treated as error
+* Assuming process data is stored in /proc/pid/stat
+* Assuming given process exits else treated as error
 
 ### specification 6
 
-* background process exists when sigchld signal is returned to parent process
+* Background process exists when sigchld signal is returned to parent process
 
 ### specification 7
 
-* repeat works for all user defined commands
+* Repeat works for all user defined commands
 
 ### bonus
 
-* implemented history and history < num > which are implemented using a global file in /tmp/history.txt and is independant on the session running
+* Implemented history and history < num > which are implemented using a global file in /tmp/history.txt and is independant on the session running
 
 ## specifications from assignment 3 completed
 
 ### specification 1 : redirection
-* redirection in shell is basically changing stdout and stdin based on the input command(>,<,>>) and i implement it by copying stdout and stdin before redirection and assigning it the copied value after redirection is finished. Assuming only 1 file to be present on the right side of redirection operator
+* Redirection in shell is basically changing stdout and stdin based on the input command(>,<,>>) and i implement it by copying stdout and stdin before redirection and assigning it the copied value after redirection is finished. Assuming only 1 file to be present on the right side of redirection operator
 
 ### specification 2 : pipes
-* pipes is handled by initializing a pipe array for virtual file descriptors which will store the output of the prev command in the pipe and this way we can pipe many commands 
+* Pipes is handled by initializing a pipe array for virtual file descriptors which will store the output of the prev command in the pipe and this way we can pipe many commands 
 
 ### specification 3 : pipes and redirection combined
-* since i am using a wrapper function handlePipes() over redirection() over runCommand() the priority is as follows: pipes,redirection,input command. This way pipes is handled before redirection stream changing happens and this way we can combine redirection and pipes using a wrapper function
+* Since i am using a wrapper function handlePipes() over redirection() over runCommand() the priority is as follows: pipes,redirection,input command. This way pipes is handled before redirection stream changing happens and this way we can combine redirection and pipes using a wrapper function
 
 ### specification 4 : user defined command:
 * jobs: prints the current running and stopped background processes based on the input flag given
@@ -104,4 +104,4 @@ This shell assumes the directory from which it was launched as its home director
 * CTRL + D : stops reading input and sends sigkill to all the background processes in that session
 
 ### bonus : replay:
- * executes given command after every interval for the given time period
+ * Executes given command after every interval for the given time period
